@@ -61,7 +61,7 @@ namespace Flash_products.Controllers
             catch { throw; }
         }
         [HttpPost]
-        [Authorize(AuthenticationSchemes = "Bearer", Roles = "admin,employee")]
+        [Authorize(AuthenticationSchemes = "Bearer", Roles = "Admin,Employee")]
         public async Task<ActionResult<bool>> Post([FromBody] VMProduct product)
         {
             try
@@ -72,7 +72,7 @@ namespace Flash_products.Controllers
             catch { throw; }
         }
         [HttpPut]
-        [Authorize(AuthenticationSchemes = "Bearer", Roles ="admin,employee")]
+        [Authorize(AuthenticationSchemes = "Bearer", Roles ="Admin,Employee")]
         public async Task<ActionResult<bool>> Put([FromBody] Products product)
         {
             try
@@ -83,7 +83,7 @@ namespace Flash_products.Controllers
             catch { throw; }
         }
         [HttpDelete("{id}")]
-        [Authorize(AuthenticationSchemes = "Bearer", Roles ="admin,employee")]
+        [Authorize(AuthenticationSchemes = "Bearer", Roles ="Admin,Employee")]
         public async Task<ActionResult<bool>> Delete(string id)
         {
             try
