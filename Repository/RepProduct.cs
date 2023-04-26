@@ -62,11 +62,11 @@
             catch { throw; }
         }
 
-        public async Task<bool> UpdateProduct(Products product)
+        public async Task<bool> UpdateProduct(VMUpdateProduct product)
         {
             try
             {
-                Products pro = await db.Products.FindAsync(product.Id);
+                Products pro = await db.Products.FindAsync(product.id);
                 pro.Categorie = await db.Categories.FindAsync(product.Categorie);
                 pro.Duration = product.Duration;
                 pro.Name_ar = product.Name_ar;

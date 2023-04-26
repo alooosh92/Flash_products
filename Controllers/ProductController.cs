@@ -21,13 +21,16 @@ namespace Flash_products.Controllers
             try
             {
 
-                var lang = Request.GetTypedHeaders().AcceptLanguage[0].ToString();
+                var lang = "";
+                try { lang = Request.GetTypedHeaders().AcceptLanguage[0].ToString(); }
+                catch { lang = "ar"; }
                 var prod = await repProduct.GetAllProducts();
                 List<VMViewProduct> VMproducts = new List<VMViewProduct>();
                 foreach (var product in prod)
                 {
                     VMViewProduct mProduct = new VMViewProduct
                     {
+                        id = product.Id,
                         Categorie = lang == "ar" ? product.Categorie!.Name_ar : product.Categorie!.Name_en,
                         Duration = product.Duration,
                         Name = lang == "ar" ? product.Name_ar : product.Name_en,
@@ -46,10 +49,13 @@ namespace Flash_products.Controllers
         {
             try
             {
-                var lang = Request.GetTypedHeaders().AcceptLanguage[0].ToString();
+                var lang = "";
+                try { lang = Request.GetTypedHeaders().AcceptLanguage[0].ToString(); }
+                catch { lang = "ar"; }
                 Products product = await repProduct.GetProduct(id);
                 VMViewProduct viewProduct = new VMViewProduct
                 {
+                    id = product.Id,
                     Categorie = lang == "ar" ? product.Categorie!.Name_ar : product.Categorie!.Name_en,
                     Duration = product.Duration,
                     Name = lang == "ar" ? product.Name_ar : product.Name_en,
@@ -73,7 +79,7 @@ namespace Flash_products.Controllers
         }
         [HttpPut]
         [Authorize(AuthenticationSchemes = "Bearer", Roles ="Admin,Employee")]
-        public async Task<ActionResult<bool>> Put([FromBody] Products product)
+        public async Task<ActionResult<bool>> Put([FromBody] VMUpdateProduct product)
         {
             try
             {
@@ -82,7 +88,7 @@ namespace Flash_products.Controllers
             }
             catch { throw; }
         }
-        [HttpDelete("{id}")]
+        [HttpDelete]
         [Authorize(AuthenticationSchemes = "Bearer", Roles ="Admin,Employee")]
         public async Task<ActionResult<bool>> Delete(string id)
         {

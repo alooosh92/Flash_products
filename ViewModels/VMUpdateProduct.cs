@@ -1,11 +1,14 @@
 ﻿namespace Flash_products.ViewModels
 {
-    public class VMViewProduct
+    public class VMUpdateProduct
     {
         public string? id { get; set; }
         [Required]
         [MaxLength(50)]
-        public string? Name { get; set; }
+        public string? Name_ar { get; set; }
+        [Required]
+        [MaxLength(50)]
+        public string? Name_en { get; set; }
         [Required]
         public DateTime Start_date { get; set; }
         [Required]
