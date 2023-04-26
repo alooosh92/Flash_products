@@ -15,7 +15,7 @@ namespace Flash_products.Controllers
             this.repProduct = repProduct;
         }
         [HttpGet]
-        [Authorize]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         public async Task<ActionResult<List<VMViewProduct>>> Get()
         {
             try
@@ -61,7 +61,7 @@ namespace Flash_products.Controllers
             catch { throw; }
         }
         [HttpPost]
-        [Authorize(Roles = "admin,employee")]
+        [Authorize(AuthenticationSchemes = "Bearer", Roles = "admin,employee")]
         public async Task<ActionResult<bool>> Post([FromBody] VMProduct product)
         {
             try
@@ -72,7 +72,7 @@ namespace Flash_products.Controllers
             catch { throw; }
         }
         [HttpPut]
-        [Authorize(Roles ="admin,employee")]
+        [Authorize(AuthenticationSchemes = "Bearer", Roles ="admin,employee")]
         public async Task<ActionResult<bool>> Put([FromBody] Products product)
         {
             try
@@ -83,7 +83,7 @@ namespace Flash_products.Controllers
             catch { throw; }
         }
         [HttpDelete("{id}")]
-        [Authorize(Roles ="admin,employee")]
+        [Authorize(AuthenticationSchemes = "Bearer", Roles ="admin,employee")]
         public async Task<ActionResult<bool>> Delete(string id)
         {
             try

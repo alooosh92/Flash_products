@@ -12,7 +12,7 @@
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         public async Task<ActionResult<List<Categories>>> Get()
         {
             try
@@ -23,7 +23,7 @@
         }
 
         [HttpGet("{id}")]
-        [Authorize]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         public async Task<ActionResult<Categories>> Get(int id)
         {
             try
@@ -34,7 +34,7 @@
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles ="admin")]
+        [Authorize(AuthenticationSchemes = "Bearer",Roles ="Admin")]
         public async Task<ActionResult<bool>> Delete(int id)
         {
             try

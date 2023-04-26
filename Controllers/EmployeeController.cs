@@ -16,7 +16,7 @@ namespace Flash_products.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize(AuthenticationSchemes = "Bearer", Roles = "Admin")]
         public async Task<ActionResult<List<VMEmployee>>> Get()
         {
             try
@@ -27,7 +27,7 @@ namespace Flash_products.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(AuthenticationSchemes = "Bearer", Roles = "Admin")]
         public async Task<ActionResult<bool>> Post([FromBody] VMEmployee employee)
         {
             try
@@ -37,7 +37,7 @@ namespace Flash_products.Controllers
         }
 
         [HttpPut]
-        [Authorize(Roles = "Admin")]
+        [Authorize(AuthenticationSchemes = "Bearer", Roles = "Admin")]
         public async Task<ActionResult<bool>> Put([FromBody] VMEmployee employee)
         {
             try
@@ -48,7 +48,7 @@ namespace Flash_products.Controllers
         }
 
         [HttpDelete]
-        [Authorize(Roles ="Admin")]
+        [Authorize(AuthenticationSchemes = "Bearer", Roles = "Admin")]
         public async Task<ActionResult<bool>> Delete(string email)
         {
             try
